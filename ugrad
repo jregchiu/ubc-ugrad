@@ -1,8 +1,8 @@
 #!/bin/bash
 PARAM="$@"
-if [ $PARAM == "shell" ]
+if [ "$PARAM" == "shell" ]
 then
-  sudo docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE>
+  docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE>
 else
-  sudo docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE> bash -c "$PARAM && exit" && sudo docker rm ugrad
+  docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE> bash -c "$PARAM && exit" && docker rm ugrad
 fi
