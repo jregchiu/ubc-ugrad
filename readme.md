@@ -3,7 +3,7 @@ This _should_ be an accurate image of UBC's ugrad machines, for the purposes of 
 
 ### Steps to Use:
 1. Install Docker. Add yourself to the Docker usergroup so that you won't have to `sudo` every Docker command.
-2. Grab this repo.
+2. Grab this repo. (Alternately, you can use the prebuilt Docker image located [here](https://hub.docker.com/r/jregchiu/ubc-ugrad/) if you don't want to download and build everything from scratch!)
 3. Run `docker build -t <NAME FOR THIS IMAGE> .` from the same directory to build this image, using the instructions in the Dockerfile. **Nb:** obviously this downloads a bunch of packages for the image, so make sure you're not on a metered internet connection!
 4. Edit `ugrad`, changing `<NAME FOR THIS IMAGE>` to whatever you chose in Step 3. Copy `ugrad` to `/usr/local/bin`.
 5. Make the script executable (`sudo chmod +x /usr/local/bin/ugrad`).

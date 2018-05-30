@@ -2,11 +2,11 @@
 PARAM="$@"
 if [ "$PARAM" == "shell" ]
 then
-  docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE> && \
+  docker run --name ugrad -it -v "$PWD:/workdir$PWD" -w "/workdir$PWD" <NAME FOR THIS IMAGE> && \
   docker stop ugrad && \
   docker rm ugrad
 else
-  docker run --name ugrad -it -v $PWD:/workdir$PWD -w /workdir$PWD <NAME FOR THIS IMAGE> bash -c "$PARAM && exit" && \
+  docker run --name ugrad -it -v "$PWD:/workdir$PWD" -w "/workdir$PWD" <NAME FOR THIS IMAGE> bash -c "$PARAM && exit" && \
   docker stop ugrad && \
   docker rm ugrad
 fi
