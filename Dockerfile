@@ -5,6 +5,7 @@ RUN zypper --non-interactive refresh \
     gcc \
     gdb \
     glibc-locale \
+    ImageMagick \
     libpng-devel \
     make \
     valgrind \
