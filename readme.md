@@ -1,17 +1,21 @@
 ### Introduction
-This _should_ be an accurate image of UBC's ugrad machines, for the purposes of local CPSC assignment compilation & testing. Slightly easier than `scp`/`ssh`-ing all the time!
+UBC-UGrad is designed to be an accurate image of UBC's ugrad machines. The program handles local CPSC assignment compilation and testing, and is easier than repeatedly applying the `scp`/`ssh` command. 
 
 ### Steps to Use:
-1. Install Docker. Add yourself to the Docker usergroup so that you won't have to `sudo` every Docker command.
-2. Grab this repo. (Alternately, you can use the prebuilt Docker image located [here](https://hub.docker.com/r/jregchiu/ubc-ugrad/) if you don't want to download and build everything from scratch!)
-3. Run `docker build -t <NAME FOR THIS IMAGE> .` from the same directory to build this image, using the instructions in the Dockerfile. **Nb:** obviously this downloads a bunch of packages for the image, so make sure you're not on a metered internet connection!
-4. Edit `ugrad`, changing `<NAME FOR THIS IMAGE>` to whatever you chose in Step 3. Copy `ugrad` to `/usr/local/bin`.
-5. Make the script executable (`sudo chmod +x /usr/local/bin/ugrad`).
-6. Profit! (i.e. `ugrad shell` if you want to launch an interactive bash shell inside the Docker container, at your current working directory. `ugrad make` if you want to compile whatever's in your current working directory, but using the UBC ugrad Docker context, or `ugrad valgrind <executable file>` or `ugrad gdb <executable file>` to use valgrind or gdb). Effectively `ugrad` is just a wrapper to execute whatever commands you pass afterwards as though they're on a UBC ugrad machine.
-7. You might have to `docker rm ugrad` after a command to stop and remove the Docker container, if it wasn't removed automatically after you executed a command and get an error.
+1. Install Docker - a computer program that performs operating-system-level virtualization - and add yourself to the usergroup. Members of the usergroup can avoid using `sudo` for Docker commands.
+2. Clone the repository. You can also use the prebuilt Docker image located [here](https://hub.docker.com/r/jregchiu/ubc-ugrad/) as a foundation.
+3. Run `docker build -t <NAME FOR THIS IMAGE>` from the directory to build the image. This applies instructions in the Dockerfile. **Nb:** `docker build -t <NAME FOR THIS IMAGE>` downloads a series of packages for the image. An unmetered internet connection is recommended. 
+4. Edit `ugrad` by changing `<NAME FOR THIS IMAGE>` to match the name you chose Step 3. Copy `ugrad` to `/usr/local/bin`.
+5. Make the script executable using the command (`sudo chmod +x /usr/local/bin/ugrad`).
+6. Enjoy the benefits of the program! `ugrad` is a wrapper used execute commands as though you are using the UBC ugrad machine.
+   - `ugrad shell` to launch an interactive bash shell inside your current directory's Docker container.
+   - `ugrad make` to compile the contents of the current working directory using the UBC ugrad Docker context.
+   - `ugrad valgrind <executable file>` or `ugrad gdb <executable file>` to use valgrind or gdb.
+7. You might have to use `docker rm ugrad`, after executing a command, to stop and remove the Docker container. The container may not always be removed automatically, which will result in an error. 
 
 ### Note
-Because I don't think you should just copy scripts without understanding them, here's a quick explanation. This creates a shortcut command called `ugrad` or whatever you've named the script, that runs a Docker container, named ugrad, using the ubc-ugrad image that you pulled from this repo. The -v argument links a volume to the container (in this case, the current working directory you execute the script from), and the -w argument sets the current working directory context inside the container to that same directory. Depending what params you pass to `ugrad`, you'll get different results: refer to Step 6 above.
+I do not recommend users to copy scripts without understanding code. A brief explanation of the program: 
+A shortcut command called `ugrad` (you may have chosen a different name) runs a Docker container, named ugrad, using the ubc-ugrad image from the repository. The -v argument links a volume to the container (i.e. the working directory containing the script), and the -w argument matches the working directory context inside the container. Refer to the above Step 6 for the program features.
 
 ### Disclaimer
-Obviously, I don't make any warranties that compiling/testing your assignments on this image is entirely equivalent to compiling/testing on the UBC ugrad machines, but it's a nice-to-have while working on your code. **Make sure to compile/run your assignments on the ugrad machines before using `handin`!** I'll try to keep this image as up-to-date as possible, including with any libraries that are required to `make` CPSC 213/221 files.
+The UBC-UGrad application is a convenient tool for coding and is not a substitute for the UBC ugrad machines. The results from compiling and testing your assignments on this image may not be identical to the UBC ugrad machines. **Make sure to compile/run your assignments on the ugrad machines before using `handin`!** I will try to keep this image up-to-date, including any libraries that are required to `make` CPSC 213/221 files.
