@@ -1,4 +1,4 @@
-FROM opensuse/leap:42.3
+FROM opensuse/leap:15
 RUN zypper --non-interactive refresh \
  && zypper --non-interactive install \
     clang \
